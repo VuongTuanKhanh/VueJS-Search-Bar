@@ -1,0 +1,23 @@
+{
+    "fields": {
+        "Types": ["All types", "Sites", "Pages"],
+        "Owners": ["Anyone", "Owned by me", "Not owned by me", "Specific Persion..."],
+        "Persons": ["admin", "designer", "editor", "sysadmin"],
+        "Starred": false,
+        "In Trash": false,
+        "Date": ["Anytime", "Today", "Yesterday", "Last 7 days", "Custom..."],
+        "Start_Date": "",
+        "End_Date": "",
+        "Title": ""
+    },
+    "items": [
+        {
+            "Title": "Home",
+            "Type": "Page",
+            "Owner": "Khanh",
+            "Date": "16/11/1999",
+            "Starred": true,
+            "In Trash": false
+        }
+    ]
+}
