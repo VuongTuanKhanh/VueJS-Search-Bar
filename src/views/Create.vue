@@ -81,7 +81,7 @@
                 </select>
               </div>
 
-                <div class="col-md-12">
+              <div class="col-md-12">
                 <div class="submit-button text-center">
                   <button
                     class="btn btn-common disabled"
@@ -104,7 +104,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import EventService from "@/services/EventService.js";
 export default {
   name: "Form",
   props: {
@@ -126,8 +126,7 @@ export default {
     };
   },
   created() {
-    axios
-      .get("http://localhost:3000/fields")
+    EventService.getFields()
       .then(respone => {
         this.fields = respone.data;
       })
