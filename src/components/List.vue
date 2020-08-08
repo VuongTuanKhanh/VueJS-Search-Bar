@@ -11,9 +11,7 @@ export default {
   name: "List",
   props: {
     items: {
-      type: Array,
-      required: true,
-      default: null
+      type: Array
     }
   }
 };

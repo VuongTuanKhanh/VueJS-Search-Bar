@@ -16,7 +16,7 @@
           <form
             id="contactForm"
             novalidate="true"
-            @submit.prevent="AddMessage()"
+            @submit.prevent="AddNewItem()"
           >
             <div class="row">
               <div class="col-md-12">
@@ -24,8 +24,8 @@
                   <input
                     type="text"
                     class="form-control"
-                    name="name"
                     placeholder="Item Name"
+                    v-model="name"
                   />
                 </div>
               </div>
@@ -33,51 +33,37 @@
                 <div class="form-group">
                   <input
                     type="text"
-                    placeholder="Owner"
                     class="form-control"
-                    name="name"
-                    required=""
+                    placeholder="Owner"
+                    v-model="owner"
                   />
                 </div>
               </div>
 
               <div class="col-md-12">
                 <div class="form-group">
-                  <input
-                    type="date"
-                    placeholder="Owner"
-                    class="form-control"
-                    name="name"
-                    required=""
-                  />
+                  <input type="date" class="form-control" v-model="date" />
                 </div>
               </div>
 
               <div class="col-md-12">
                 <div class="form-group">
-                  <input type="checkbox" placeholder="Owner" name="name" /> Star
+                  <input type="checkbox" v-model="starred" /> Star
 
                   <input
                     type="checkbox"
                     placeholder="Owner"
                     name="name"
                     style="margin-left: 200px"
+                    v-model="trash"
                   />
                   In Trash
                 </div>
               </div>
 
               <div style="width: 100%">
-                <select type="text" placeholder="type" id="email" name="name">
-                  <option v-for="owner in fields.Owners" :key="owner">{{
-                    owner
-                  }}</option>
-                </select>
-
-                <select type="text" placeholder="type" id="email" name="name">
-                  <option v-for="type in fields.Types" :key="type">{{
-                    type
-                  }}</option>
+                <select type="text" v-model="type">
+                  <option v-for="type in types" :key="type">{{ type }}</option>
                 </select>
               </div>
 
@@ -104,10 +90,12 @@
 </template>
 
 <script>
-import EventService from "@/services/EventService.js";
 export default {
   name: "Form",
   props: {
+    fields: {
+      type: Object
+    },
     title: {
       type: String,
       default: "Create new Item"
@@ -119,32 +107,34 @@ export default {
   },
   data() {
     return {
-      fields: {
-        Owners: null,
-        Types: null
-      }
+      name: "",
+      owner: "",
+      date: "",
+      starred: false,
+      trash: false,
+      type: "Sites",
+      types: ["Sites", "Pages"],
+      owners: ["Anyone", "Owned by me", "Not owned by me"]
     };
   },
-  created() {
-    EventService.getFields()
-      .then(respone => {
-        this.fields = respone.data;
-      })
-      .catch(error => {
-        console.log(error.response);
-      });
-  },
   methods: {
-    AddMessage() {
-      let message = {
+    AddNewItem() {
+      let Item = {
         name: this.name,
-        email: this.email,
-        message: this.message
+        owner: this.owner,
+        date: this.date,
+        starred: this.starred,
+        trash: this.trash,
+        type: this.type
       };
-      this.$emit("AddNewMessage", message);
+      console.log("Add", Item);
+      this.$emit("SendItem", Item);
       this.name = null;
-      this.message = null;
-      this.email = null;
+      this.owner = null;
+      this.date = null;
+      this.starred = false;
+      this.trash = false;
+      this.type = "Sites";
     }
   }
 };
@@ -152,7 +142,7 @@ export default {
 
 <style scoped>
 select {
-  width: 40%;
+  width: 100%;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
@@ -167,7 +157,7 @@ select {
 }
 
 .container {
-  height: 600px;
+  height: 100%;
   width: 100%;
   position: relative;
   overflow: hidden;
