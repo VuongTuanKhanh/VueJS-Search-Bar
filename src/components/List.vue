@@ -67,8 +67,10 @@ export default {
     },
     advanceQuery() {
       this.showList = [];
-      // console.log(this.startDate);
-      // console.log(this.endDate);
+      // eslint-disable-next-line no-unused-vars
+      let start = new Date(this.startDate);
+      // eslint-disable-next-line no-unused-vars
+      let end = new Date(this.endDate);
       console.log("Advance Query", this.advanceQuery);
       for (let item of this.items) {
         if (
@@ -114,11 +116,10 @@ export default {
 
         if (this.advanceQuery["Date"] != "") {
           if (item["Date"] != this.advanceQuery["Date"]) continue;
-        } else if (this.advanceQuery["startDate"] != "") {
-          let start = new Date(this.startDate);
-          let end = new Date(this.endDate);
+        } else if (this.advanceQuery["Date"] == "") {
           let current = new Date(item.Date);
-          if (!(current >= start && current <= end)) {
+          if (start <= current && current <= end) {
+            this.showList.push(item);
             continue;
           }
         }
