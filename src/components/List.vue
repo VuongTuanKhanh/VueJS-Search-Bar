@@ -67,6 +67,8 @@ export default {
     },
     advanceQuery() {
       this.showList = [];
+      // console.log(this.startDate);
+      // console.log(this.endDate);
       console.log("Advance Query", this.advanceQuery);
       for (let item of this.items) {
         if (
@@ -113,7 +115,7 @@ export default {
           let start = new Date(this.startDate);
           let end = new Date(this.endDate);
           let current = new Date(item.Date);
-          if (current < start || current > end) {
+          if (!(current >= start && current <= end)) {
             continue;
           }
         }
