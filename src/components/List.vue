@@ -1,8 +1,23 @@
 <template>
   <div>
-    <ul>
-      <li v-for="item in showList" :key="item.Title">{{ item }}</li>
-    </ul>
+    <table border="1">
+      <tr>
+        <td><h3>Title</h3></td>
+        <td><h3>Type</h3></td>
+        <td><h3>Owner</h3></td>
+        <td><h3>Date</h3></td>
+        <td><h3>Starred</h3></td>
+        <td><h3>Trash</h3></td>
+      </tr>
+      <tr v-for="item in showList" :key="item.Title">
+        <td>{{ item.Title }}</td>
+        <td>{{ item.Type }}</td>
+        <td>{{ item.Owner }}</td>
+        <td>{{ item.Date }}</td>
+        <td>{{ item.Starred }}</td>
+        <td>{{ item.Trash }}</td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -15,6 +30,15 @@ export default {
     },
     query: {
       type: Object
+    },
+    advanceQuery: {
+      type: Object
+    },
+    startDate: {
+      type: String
+    },
+    endDate: {
+      type: String
     }
   },
   data() {
@@ -32,11 +56,68 @@ export default {
       for (let i of this.items) {
         let item_Attr = Object.values(i);
         for (let j in item_Attr) {
-          if (item_Attr[j] != query_Attr[j] && query_Attr[j] != "") {
+          if (item_Attr[j] == query_Attr[j] && query_Attr[j] != "") {
             this.showList.push(i);
             break;
           }
         }
+      }
+    },
+    advanceQuery() {
+      this.showList = [];
+      console.log("Advance Query", this.advanceQuery);
+      for (let item of this.items) {
+        if (
+          item["Type"] != this.advanceQuery["Type"] &&
+          this.advanceQuery["Type"] != ""
+        ) {
+          continue;
+        }
+
+        if (
+          item["Owner"] != this.advanceQuery["Owner"] &&
+          this.advanceQuery["Owner"] != ""
+        ) {
+          continue;
+        }
+
+        if (
+          item["Starred"] != this.advanceQuery["Starred"] &&
+          this.advanceQuery["Starred"] != ""
+        ) {
+          continue;
+        }
+
+        if (
+          item["Trash"] != this.advanceQuery["Trash"] &&
+          this.advanceQuery["Trash"] != ""
+        ) {
+          continue;
+        }
+
+        if (
+          this.advanceQuery["Title"] != "" &&
+          item["Title"]
+            .toUpperCase()
+            .includes(this.advanceQuery["Title"].toUpperCase()) == false
+        ) {
+          continue;
+        }
+        if (this.advanceQuery["startDate"] != "") {
+          let start = new Date(this.startDate);
+          let end = new Date(this.endDate);
+          let current = new Date(item.Date);
+          if (current < start || current > end) {
+            continue;
+          }
+        }
+        if (
+          item["Date"] != this.advanceQuery["Date"] &&
+          this.advanceQuery["Date"] != ""
+        ) {
+          continue;
+        }
+        this.showList.push(item);
       }
     }
   }
@@ -50,7 +131,8 @@ li {
 }
 
 table {
-  width: 100%;
+  width: 90%;
+  margin: auto;
 }
 
 tr {

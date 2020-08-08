@@ -34,6 +34,11 @@
           </td>
         </tr>
 
+        <tr v-show="Owner == 'Specific Persion...'">
+          <td></td>
+          <td><input type="text" v-model="person" /></td>
+        </tr>
+
         <tr>
           <td><b>Date</b></td>
           <td>
@@ -85,6 +90,7 @@ export default {
   data() {
     return {
       selectedParentSearch: "Advanced Search",
+      person: "",
       selectedDate: "",
       Title: "",
       Type: "",
@@ -93,10 +99,7 @@ export default {
       Starred: "",
       Trash: "",
       startDate: "",
-      endDate: (this.Date = new Date()
-        .toJSON()
-        .slice(0, 10)
-        .replace(/-/g, "/"))
+      endDate: ""
     };
   },
   methods: {
@@ -111,6 +114,8 @@ export default {
         this.Owner = "Khanh";
       } else if (this.Owner == "Anyone") {
         this.Owner = "";
+      } else if (this.Owner == "Specific Persion...") {
+        this.Owner = this.person;
       }
 
       if (this.Type == "All types") {
@@ -123,32 +128,42 @@ export default {
         this.Date = new Date()
           .toJSON()
           .slice(0, 10)
-          .replace(/-/g, "/");
+          .replace(/-/g, "-");
       } else if (this.selectedDate == "Yesterday") {
         this.Date = new Date(new Date().setDate(new Date().getDate() - 1))
           .toJSON()
           .slice(0, 10)
-          .replace(/-/g, "/");
+          .replace(/-/g, "-");
       } else {
         if (this.selectedDate == "Last 7 days") {
-          this.startDate = this.Date = new Date(
+          this.startDate = new Date(
             new Date().setDate(new Date().getDate() - 7)
           )
             .toJSON()
             .slice(0, 10)
-            .replace(/-/g, "/");
+            .replace(/-/g, "-");
+          this.endDate = new Date()
+            .toJSON()
+            .slice(0, 10)
+            .replace(/-/g, "-");
         }
       }
 
-      console.log(this.queryString);
-      console.log(this.startDate);
-      console.log(this.endDate);
       this.$emit(
-        "DetailSearch",
+        "AdvanceSearch",
         this.queryString,
         this.startDate,
         this.endDate
       );
+      this.person = "";
+      this.selectedDate = "";
+      this.Title = "";
+      this.Type = "";
+      this.Owner = "";
+      this.Date = "";
+      this.Starred = "";
+      this.Trash = "";
+      this.startDate = "";
     }
   },
   computed: {

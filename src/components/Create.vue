@@ -113,7 +113,7 @@ export default {
       starred: false,
       trash: false,
       type: "Sites",
-      types: ["Sites", "Pages"],
+      types: ["Site", "Page"],
       owners: ["Anyone", "Owned by me", "Not owned by me"]
     };
   },
@@ -127,7 +127,6 @@ export default {
         Starred: this.starred,
         Trash: this.trash
       };
-      console.log("Add", Item);
       this.$emit("SendItem", Item);
       this.name = null;
       this.owner = null;

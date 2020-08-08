@@ -6,8 +6,16 @@
         class="search"
         :fields="fields"
         @instantSearch="ExecuteInstantSearch"
+        @AdvanceSearch="ExecuteAdvanceSearch"
       />
-      <List class="list" :items="items" :query="query" />
+      <List
+        class="list"
+        :items="items"
+        :query="query"
+        :advanceQuery="advanceQuery"
+        :startDate="startDate"
+        :endDate="endDate"
+      />
     </div>
   </div>
 </template>
@@ -39,7 +47,17 @@ export default {
         Date: "",
         Starred: "",
         Trash: ""
-      }
+      },
+      advanceQuery: {
+        Title: "",
+        Type: "",
+        Owner: "",
+        Date: "",
+        Starred: "",
+        Trash: ""
+      },
+      startDate: "",
+      endDate: ""
     };
   },
   created() {
@@ -65,6 +83,11 @@ export default {
     },
     ExecuteInstantSearch(newQuery) {
       this.query = newQuery;
+    },
+    ExecuteAdvanceSearch(newQuery, startDate, endDate) {
+      this.advanceQuery = newQuery;
+      this.startDate = startDate;
+      this.endDate = endDate;
     }
   }
 };
