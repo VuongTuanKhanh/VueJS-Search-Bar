@@ -1,14 +1,16 @@
 {
     "fields": {
-        "Types": ["All types", "Sites", "Pages"],
+        "Types": ["Sites", "Pages", "Advanced Search"],
+        "Advance": ["All types", "Sites", "Pages"],
         "Owners": ["Anyone", "Owned by me", "Not owned by me", "Specific Persion..."],
         "Persons": ["admin", "designer", "editor", "sysadmin"],
         "Starred": false,
-        "In Trash": false,
+        "Trash": false,
         "Date": ["Anytime", "Today", "Yesterday", "Last 7 days", "Custom..."],
         "Start_Date": "",
         "End_Date": "",
         "Title": ""
+        
     },
     "items": [
         {
@@ -17,7 +19,39 @@
             "Owner": "Khanh",
             "Date": "16/11/1999",
             "Starred": true,
-            "In Trash": false
+            "Trash": false
+        },
+        {
+            "Title": "Home1",
+            "Type": "Sites",
+            "Owner": "Khanh",
+            "Date": "16/11/1999",
+            "Starred": false,
+            "Trash": true
+        },
+        {
+            "Title": "Home2",
+            "Type": "Page",
+            "Owner": "Khanh",
+            "Date": "16/11/1999",
+            "Starred": true,
+            "Trash": false
+        },
+        {
+            "Title": "Home3",
+            "Type": "Page",
+            "Owner": "Khanh",
+            "Date": "16/11/1999",
+            "Starred": true,
+            "Trash": true
+        },
+        {
+            "Title": "Home4",
+            "Type": "Page",
+            "Owner": "Khanh",
+            "Date": "16/11/1999",
+            "Starred": false,
+            "Trash": false
         }
     ]
 }

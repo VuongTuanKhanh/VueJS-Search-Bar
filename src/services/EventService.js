@@ -12,5 +12,8 @@ const apiClient = axios.create({
 export default {
   getFields() {
     return apiClient.get("/fields");
+  },
+  getItems() {
+    return apiClient.get("/items");
   }
 };
