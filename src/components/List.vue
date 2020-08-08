@@ -2,6 +2,7 @@
   <div>
     <table border="1">
       <tr>
+        <td></td>
         <td><h3>Title</h3></td>
         <td><h3>Type</h3></td>
         <td><h3>Owner</h3></td>
@@ -9,7 +10,8 @@
         <td><h3>Starred</h3></td>
         <td><h3>Trash</h3></td>
       </tr>
-      <tr v-for="item in showList" :key="item.Title">
+      <tr v-for="(item, index) in showList" :key="item.Title">
+        <td>{{ index }}</td>
         <td>{{ item.Title }}</td>
         <td>{{ item.Type }}</td>
         <td>{{ item.Owner }}</td>
@@ -74,7 +76,11 @@ export default {
           continue;
         }
 
-        if (
+        if (this.advanceQuery["Owner"] == "Not owned by me") {
+          if (item["Owner"] == "Khanh") {
+            continue;
+          }
+        } else if (
           item["Owner"] != this.advanceQuery["Owner"] &&
           this.advanceQuery["Owner"] != ""
         ) {
