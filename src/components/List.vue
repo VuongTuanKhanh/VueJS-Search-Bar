@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-      <li v-for="item in items" :key="item.Title">{{ item }}</li>
+      <li v-for="item in showList" :key="item.Title">{{ item }}</li>
     </ul>
   </div>
 </template>
@@ -12,6 +12,32 @@ export default {
   props: {
     items: {
       type: Array
+    },
+    query: {
+      type: Object
+    }
+  },
+  data() {
+    return {
+      showList: []
+    };
+  },
+  watch: {
+    items() {
+      this.showList = this.items;
+    },
+    query() {
+      this.showList = [];
+      let query_Attr = Object.values(this.query);
+      for (let i of this.items) {
+        let item_Attr = Object.values(i);
+        for (let j in item_Attr) {
+          if (item_Attr[j] != query_Attr[j] && query_Attr[j] != "") {
+            this.showList.push(i);
+            break;
+          }
+        }
+      }
     }
   }
 };

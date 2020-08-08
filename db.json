@@ -1,7 +1,7 @@
 {
     "fields": {
-        "Types": ["Sites", "Pages", "Advanced Search"],
-        "Advance": ["All types", "Sites", "Pages"],
+        "Types": ["Site", "Page", "Advanced Search"],
+        "Advance": ["All types", "Site", "Page"],
         "Owners": ["Anyone", "Owned by me", "Not owned by me", "Specific Persion..."],
         "Persons": ["admin", "designer", "editor", "sysadmin"],
         "Starred": false,
@@ -17,15 +17,15 @@
             "Title": "Home",
             "Type": "Page",
             "Owner": "Khanh",
-            "Date": "16/11/1999",
+            "Date": "2020-08-14",
             "Starred": true,
             "Trash": false
         },
         {
             "Title": "Home1",
-            "Type": "Sites",
+            "Type": "Site",
             "Owner": "Khanh",
-            "Date": "16/11/1999",
+            "Date": "2020-08-14",
             "Starred": false,
             "Trash": true
         },
@@ -33,7 +33,7 @@
             "Title": "Home2",
             "Type": "Page",
             "Owner": "Khanh",
-            "Date": "16/11/1999",
+            "Date": "2020-08-14",
             "Starred": true,
             "Trash": false
         },
@@ -41,7 +41,7 @@
             "Title": "Home3",
             "Type": "Page",
             "Owner": "Khanh",
-            "Date": "16/11/1999",
+            "Date": "2020-08-14",
             "Starred": true,
             "Trash": true
         },
@@ -49,7 +49,7 @@
             "Title": "Home4",
             "Type": "Page",
             "Owner": "Khanh",
-            "Date": "16/11/1999",
+            "Date": "2020-08-14",
             "Starred": false,
             "Trash": false
         }

@@ -2,8 +2,12 @@
   <div>
     <Create @SendItem="AddItemToList" />
     <div class="container">
-      <Search class="search" />
-      <List class="list" :items="items" />
+      <Search
+        class="search"
+        :fields="fields"
+        @instantSearch="ExecuteInstantSearch"
+      />
+      <List class="list" :items="items" :query="query" />
     </div>
   </div>
 </template>
@@ -27,7 +31,15 @@ export default {
         Owners: null,
         Types: null
       },
-      items: []
+      items: [],
+      query: {
+        Title: "",
+        Type: "",
+        Owner: "",
+        Date: "",
+        Starred: "",
+        Trash: ""
+      }
     };
   },
   created() {
@@ -51,6 +63,9 @@ export default {
     AddItemToList(newItem) {
       console.log(newItem);
       this.items.push(newItem);
+    },
+    ExecuteInstantSearch(newQuery) {
+      this.query = newQuery;
     }
   }
 };

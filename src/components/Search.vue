@@ -3,14 +3,14 @@
     <select
       type="text"
       placeholder="type"
-      @change="onTypeChange()"
-      v-model="selectedSearch"
+      v-model="selectedParentSearch"
+      @change="ParentSearch()"
     >
       <option v-for="type in fields.Types" :key="type">{{ type }}</option>
     </select>
 
     <hr />
-    <div v-show="selectedSearch == 'Advanced Search'">
+    <div v-show="selectedParentSearch == 'Advanced Search'">
       <table>
         <tr>
           <td><b>Type</b></td>
@@ -75,39 +75,46 @@
 </template>
 
 <script>
-import EventService from "@/services/EventService.js";
 export default {
   name: "Search",
+  props: {
+    fields: {
+      type: Object
+    }
+  },
   data() {
     return {
-      fields: {
-        Types: null,
-        Owners: null,
-        Persons: null,
-        Starred: null,
-        Trash: null,
-        Date: null
-      },
-      selectedSearch: "Advanced Search",
+      selectedParentSearch: "Advanced Search",
       selectedDate: "Anytime",
       isStarred: false,
       isTrash: false,
-      queryString: ""
+      Title: "",
+      Type: "",
+      Owner: "",
+      Date: "",
+      Starred: "",
+      Trash: ""
     };
   },
   methods: {
-    onTypeChange() {
-      this.$emit("SendQuery", "Pages");
+    ParentSearch() {
+      if (this.selectedParentSearch != "Advanced Search") {
+        this.Type = this.selectedParentSearch;
+        this.$emit("instantSearch", this.queryString);
+      }
     }
   },
-  created() {
-    EventService.getFields()
-      .then(respone => {
-        this.fields = respone.data;
-      })
-      .catch(error => {
-        console.log(error.response);
-      });
+  computed: {
+    queryString() {
+      return {
+        Title: this.Title,
+        Type: this.Type,
+        Owner: this.Owner,
+        Date: this.Date,
+        Starred: this.Starred,
+        Trash: this.Trash
+      };
+    }
   }
 };
 </script>

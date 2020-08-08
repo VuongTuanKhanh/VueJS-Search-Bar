@@ -120,12 +120,12 @@ export default {
   methods: {
     AddNewItem() {
       let Item = {
-        name: this.name,
-        owner: this.owner,
-        date: this.date,
-        starred: this.starred,
-        trash: this.trash,
-        type: this.type
+        Title: this.name,
+        Type: this.type,
+        Owner: this.owner,
+        Date: this.date,
+        Starred: this.starred,
+        Trash: this.trash
       };
       console.log("Add", Item);
       this.$emit("SendItem", Item);
