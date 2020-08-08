@@ -15,7 +15,7 @@
         <tr>
           <td><b>Type</b></td>
           <td>
-            <select type="text">
+            <select type="text" v-model="Type">
               <option v-for="type in fields.Advance" :key="type">{{
                 type
               }}</option>
@@ -26,7 +26,7 @@
         <tr>
           <td><b>Owner</b></td>
           <td>
-            <select type="text">
+            <select type="text" v-model="Owner">
               <option v-for="owner in fields.Owners" :key="owner">{{
                 owner
               }}</option>
@@ -48,28 +48,28 @@
         <tr v-show="selectedDate == 'Custom...'">
           <td></td>
           <td>
-            <input type="date" style="width: 50%;" />
-            <input type="date" style="width: 50%;" />
+            <input type="date" style="width: 50%;" v-model="startDate" />
+            <input type="date" style="width: 50%;" v-model="endDate" />
           </td>
         </tr>
 
         <tr>
           <td><b>Words</b></td>
           <td>
-            <input type="text" class="inputtext" />
+            <input type="text" class="inputtext" v-model="Title" />
           </td>
         </tr>
 
         <tr>
-          <td><input type="checkbox" v-model="isStarred" /> Star</td>
+          <td><input type="checkbox" v-model="Starred" /> Star</td>
           <td>
-            <input type="checkbox" v-model="isTrash" />
+            <input type="checkbox" v-model="Trash" />
             In Trash
           </td>
         </tr>
       </table>
 
-      <button>Search</button>
+      <button @click="submitSearch()">Search</button>
     </div>
   </div>
 </template>
@@ -85,15 +85,18 @@ export default {
   data() {
     return {
       selectedParentSearch: "Advanced Search",
-      selectedDate: "Anytime",
-      isStarred: false,
-      isTrash: false,
+      selectedDate: "",
       Title: "",
       Type: "",
       Owner: "",
       Date: "",
       Starred: "",
-      Trash: ""
+      Trash: "",
+      startDate: "",
+      endDate: (this.Date = new Date()
+        .toJSON()
+        .slice(0, 10)
+        .replace(/-/g, "/"))
     };
   },
   methods: {
@@ -102,6 +105,50 @@ export default {
         this.Type = this.selectedParentSearch;
         this.$emit("instantSearch", this.queryString);
       }
+    },
+    submitSearch() {
+      if (this.Owner == "Owned by me") {
+        this.Owner = "Khanh";
+      } else if (this.Owner == "Anyone") {
+        this.Owner = "";
+      }
+
+      if (this.Type == "All types") {
+        this.Type = "";
+      }
+
+      if (this.selectedDate == "Anytime") {
+        this.Date = "";
+      } else if (this.selectedDate == "Today") {
+        this.Date = new Date()
+          .toJSON()
+          .slice(0, 10)
+          .replace(/-/g, "/");
+      } else if (this.selectedDate == "Yesterday") {
+        this.Date = new Date(new Date().setDate(new Date().getDate() - 1))
+          .toJSON()
+          .slice(0, 10)
+          .replace(/-/g, "/");
+      } else {
+        if (this.selectedDate == "Last 7 days") {
+          this.startDate = this.Date = new Date(
+            new Date().setDate(new Date().getDate() - 7)
+          )
+            .toJSON()
+            .slice(0, 10)
+            .replace(/-/g, "/");
+        }
+      }
+
+      console.log(this.queryString);
+      console.log(this.startDate);
+      console.log(this.endDate);
+      this.$emit(
+        "DetailSearch",
+        this.queryString,
+        this.startDate,
+        this.endDate
+      );
     }
   },
   computed: {

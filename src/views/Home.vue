@@ -61,7 +61,6 @@ export default {
   },
   methods: {
     AddItemToList(newItem) {
-      console.log(newItem);
       this.items.push(newItem);
     },
     ExecuteInstantSearch(newQuery) {
