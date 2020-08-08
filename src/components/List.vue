@@ -111,19 +111,16 @@ export default {
         ) {
           continue;
         }
-        if (this.advanceQuery["startDate"] != "") {
+
+        if (this.advanceQuery["Date"] != "") {
+          if (item["Date"] != this.advanceQuery["Date"]) continue;
+        } else if (this.advanceQuery["startDate"] != "") {
           let start = new Date(this.startDate);
           let end = new Date(this.endDate);
           let current = new Date(item.Date);
           if (!(current >= start && current <= end)) {
             continue;
           }
-        }
-        if (
-          item["Date"] != this.advanceQuery["Date"] &&
-          this.advanceQuery["Date"] != ""
-        ) {
-          continue;
         }
         this.showList.push(item);
       }
