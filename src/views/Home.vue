@@ -15,6 +15,7 @@
         :advanceQuery="advanceQuery"
         :startDate="startDate"
         :endDate="endDate"
+        @Finish="ClearData"
       />
     </div>
   </div>
@@ -88,6 +89,10 @@ export default {
       this.advanceQuery = newQuery;
       this.startDate = startDate;
       this.endDate = endDate;
+    },
+    ClearData() {
+      this.startDate = "";
+      this.endDate = "";
     }
   }
 };

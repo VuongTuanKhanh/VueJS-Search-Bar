@@ -1,90 +1,4 @@
-{
-    "fields": {
-        "Types": ["Site", "Page", "Advanced Search"],
-        "Advance": ["All types", "Site", "Page"],
-        "Owners": ["Anyone", "Owned by me", "Not owned by me", "Specific Persion..."],
-        "Persons": ["admin", "designer", "editor", "sysadmin"],
-        "Starred": false,
-        "Trash": false,
-        "Date": ["Anytime", "Today", "Yesterday", "Last 7 days", "Custom..."],
-        "Start_Date": "",
-        "End_Date": "",
-        "Title": ""
-        
-    },
-    "items": [
-        {
-            "Title": "Page",
-            "Type": "Page",
-            "Owner": "Khanh",
-            "Date": "2020-08-14",
-            "Starred": true,
-            "Trash": false
-        },
-        {
-            "Title": "Index",
-            "Type": "Site",
-            "Owner": "Luan",
-            "Date": "2020-08-14",
-            "Starred": false,
-            "Trash": true
-        },
-        {
-            "Title": "User",
-            "Type": "Page",
-            "Owner": "Phuoc",
-            "Date": "2020-08-14",
-            "Starred": true,
-            "Trash": false
-        },
-        {
-            "Title": "Login Now",
-            "Type": "Page",
-            "Owner": "Khanh",
-            "Date": "2020-08-14",
-            "Starred": true,
-            "Trash": true
-        },
-        {
-            "Title": "Buy Now",
-            "Type": "Page",
-            "Owner": "Hung",
-            "Date": "2020-08-07",
-            "Starred": false,
-            "Trash": false
-        },
-        {
-            "Title": "Why not",
-            "Type": "Site",
-            "Owner": "Khanh",
-            "Date": "1999-08-07",
-            "Starred": true,
-            "Trash": true
-        },
-        {
-            "Title": "Then and now",
-            "Type": "Site",
-            "Owner": "Khanh",
-            "Date": "2020-08-07",
-            "Starred": false,
-            "Trash": false
-        },
-        {
-            "Title": "Then and now 1",
-            "Type": "Site",
-            "Owner": "Khanh",
-            "Date": "2020-08-03",
-            "Starred": false,
-            "Trash": false
-        },
-        {
-            "Title": "Have a num",
-            "Type": "Page",
-            "Owner": "Luan",
-            "Date": "2020-08-08",
-            "Starred": true,
-            "Trash": false
-        },
+,
         {
             "Title": "Extensive",
             "Type": "Page",
@@ -929,7 +843,7 @@
             "Title": "Clarke",
             "Type": "Page",
             "Owner": "Halla",
-            "Date": "2020-08-09",
+            "Date": "1994-05-11",
             "Starred": "true",
             "Trash": "false"
         },
@@ -937,7 +851,7 @@
             "Title": "Hammett",
             "Type": "Page",
             "Owner": "Caryn",
-            "Date": "2020-08-09",
+            "Date": "2001-01-09",
             "Starred": "true",
             "Trash": "false"
         },
@@ -957,5 +871,3 @@
             "Starred": "false",
             "Trash": "true"
         }
-    ]
-}

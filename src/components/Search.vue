@@ -146,6 +146,15 @@ export default {
             .toJSON()
             .slice(0, 10)
             .replace(/-/g, "-");
+        } else {
+          this.startDate = new Date(this.startDate)
+            .toJSON()
+            .slice(0, 10)
+            .replace(/-/g, "-");
+          this.endDate = new Date(this.endDate)
+            .toJSON()
+            .slice(0, 10)
+            .replace(/-/g, "-");
         }
       }
 
@@ -164,6 +173,7 @@ export default {
       this.Starred = "";
       this.Trash = "";
       this.startDate = "";
+      this.endDate = "";
     }
   },
   computed: {

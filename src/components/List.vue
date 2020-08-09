@@ -45,10 +45,18 @@ export default {
   },
   data() {
     return {
-      showList: []
+      showList: [],
+      minDate: "",
+      maxDate: ""
     };
   },
   watch: {
+    startDate() {
+      this.minDate = this.startDate;
+    },
+    endDate() {
+      this.maxDate = this.endDate;
+    },
     items() {
       this.showList = this.items;
     },
@@ -67,11 +75,8 @@ export default {
     },
     advanceQuery() {
       this.showList = [];
-      // eslint-disable-next-line no-unused-vars
-      let start = new Date(this.startDate);
-      // eslint-disable-next-line no-unused-vars
-      let end = new Date(this.endDate);
-      console.log("Advance Query", this.advanceQuery);
+      let start = new Date(this.minDate);
+      let end = new Date(this.maxDate);
       for (let item of this.items) {
         if (
           item["Type"] != this.advanceQuery["Type"] &&
@@ -116,15 +121,15 @@ export default {
 
         if (this.advanceQuery["Date"] != "") {
           if (item["Date"] != this.advanceQuery["Date"]) continue;
-        } else if (this.advanceQuery["Date"] == "") {
+        } else {
           let current = new Date(item.Date);
-          if (start <= current && current <= end) {
-            this.showList.push(item);
+          if (start > current || current > end) {
             continue;
           }
         }
         this.showList.push(item);
       }
+      this.$emit("Finish");
     }
   }
 };
