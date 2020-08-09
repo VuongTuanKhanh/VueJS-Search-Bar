@@ -1,6 +1,6 @@
 # vue-search-bar
 
-### Hi there, I'm Vuong Tuan Khanh - aka [ArchiusVuong][https://www.facebook.com/cambo.li.9] 👋
+### Hi there, I'm Vuong Tuan Khanh - aka [ArchiusVuong](https://www.facebook.com/cambo.li.9) 👋
 
 ## I'm a Student, Developer, and Teacher at MindX!
 - 🔭 I’m currently working at [MindX School][https://mindx.edu.vn/]!
