@@ -147,14 +147,18 @@ export default {
             .slice(0, 10)
             .replace(/-/g, "-");
         } else if (this.selectedDate == "Custom...") {
-          this.startDate = new Date(this.startDate)
-            .toJSON()
-            .slice(0, 10)
-            .replace(/-/g, "-");
-          this.endDate = new Date(this.endDate)
-            .toJSON()
-            .slice(0, 10)
-            .replace(/-/g, "-");
+          if (this.startDate != "" && this.endDate != "") {
+            this.startDate = new Date(this.startDate)
+              .toJSON()
+              .slice(0, 10)
+              .replace(/-/g, "-");
+            this.endDate = new Date(this.endDate)
+              .toJSON()
+              .slice(0, 10)
+              .replace(/-/g, "-");
+          } else {
+            this.Date = "";
+          }
         }
       }
 
