@@ -146,7 +146,7 @@ export default {
             .toJSON()
             .slice(0, 10)
             .replace(/-/g, "-");
-        } else {
+        } else if (this.selectedDate == "Custom...") {
           this.startDate = new Date(this.startDate)
             .toJSON()
             .slice(0, 10)
@@ -184,7 +184,9 @@ export default {
         Owner: this.Owner,
         Date: this.Date,
         Starred: this.Starred,
-        Trash: this.Trash
+        Trash: this.Trash,
+        startDate: this.startDate,
+        endDate: this.endDate
       };
     }
   }

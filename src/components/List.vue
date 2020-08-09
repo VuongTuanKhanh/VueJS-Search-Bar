@@ -35,28 +35,14 @@ export default {
     },
     advanceQuery: {
       type: Object
-    },
-    startDate: {
-      type: String
-    },
-    endDate: {
-      type: String
     }
   },
   data() {
     return {
-      showList: [],
-      minDate: "",
-      maxDate: ""
+      showList: []
     };
   },
   watch: {
-    startDate() {
-      this.minDate = this.startDate;
-    },
-    endDate() {
-      this.maxDate = this.endDate;
-    },
     items() {
       this.showList = this.items;
     },
@@ -75,8 +61,8 @@ export default {
     },
     advanceQuery() {
       this.showList = [];
-      let start = new Date(this.minDate);
-      let end = new Date(this.maxDate);
+      let start = new Date(this.advanceQuery.startDate);
+      let end = new Date(this.advanceQuery.endDate);
       for (let item of this.items) {
         if (
           item["Type"] != this.advanceQuery["Type"] &&

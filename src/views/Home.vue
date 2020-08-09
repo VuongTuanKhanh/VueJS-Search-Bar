@@ -13,8 +13,6 @@
         :items="items"
         :query="query"
         :advanceQuery="advanceQuery"
-        :startDate="startDate"
-        :endDate="endDate"
         @Finish="ClearData"
       />
     </div>
@@ -55,7 +53,9 @@ export default {
         Owner: "",
         Date: "",
         Starred: "",
-        Trash: ""
+        Trash: "",
+        startDate: "",
+        endDate: ""
       },
       startDate: "",
       endDate: ""
@@ -85,10 +85,8 @@ export default {
     ExecuteInstantSearch(newQuery) {
       this.query = newQuery;
     },
-    ExecuteAdvanceSearch(newQuery, startDate, endDate) {
+    ExecuteAdvanceSearch(newQuery) {
       this.advanceQuery = newQuery;
-      this.startDate = startDate;
-      this.endDate = endDate;
     },
     ClearData() {
       this.startDate = "";
